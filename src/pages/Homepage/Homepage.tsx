@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { Typography } from "@mui/material";
-import Icon from '@mui/material/Icon';
+
+import NewsCard from '../../components/NewsCard/NewsCard';
 
 import './Homepage.scss';
 
@@ -21,6 +22,7 @@ const Homepage = () => {
                 <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {5}</Typography>
                 <hr />
             </div>
+            <NewsCard />
         </div>
     )
 }

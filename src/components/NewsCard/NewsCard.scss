@@ -1,0 +1,28 @@
+@use '../../scss/' as *;
+
+.cardContent {
+
+    @include flex(inherit, inherit);
+    gap: 20px;
+    flex-direction: column;
+
+    &__date {
+        @include flex(center, flex-start);
+        gap: 10px;
+
+        &-timetable {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+.link {
+    @include flex(center, inherit);
+    gap: 8px;
+}
+
+.linkArrow {
+    width: 14px;
+    height: 14px;
+}
