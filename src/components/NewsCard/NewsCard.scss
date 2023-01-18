@@ -2,7 +2,7 @@
 
 .cardContent {
 
-    @include flex(inherit, inherit);
+    @include flex(space-between, inherit);
     gap: 20px;
     flex-direction: column;
 
