@@ -22,6 +22,8 @@ type Article = {
 
 const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsSite, summary, publishedAt, launches, events }) => {
 
+    const link = "articles/" + id;
+
     return (
         <Card
             className="card"
@@ -44,7 +46,7 @@ const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsS
                 <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
                     {summary.length > 130 ? summary.substring(0, 130) : summary}...
                 </Typography>
-                <Link href="/" className='link' sx={{
+                <Link href={link} className='link' sx={{
                     textDecoration: "none", color: "black", fontSize: "14px", fontWeight: "700",
                     fontFamily: "Montserrat, sans-serif",
                 }}>
