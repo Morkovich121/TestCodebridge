@@ -3,12 +3,25 @@ import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Link } from "@mui/material";
 
 import timetable from '../../images/timetable.png';
-import newsImage from '../../images/newsImage.png';
 import rightArrow from '../../images/rightArrow.png';
 
 import './NewsCard.scss';
 
-const NewsCard = () => {
+type Article = {
+    "id": number,
+    "featured": boolean,
+    "title": string,
+    "url": string,
+    "imageUrl": string,
+    "newsSite": string,
+    "summary": string,
+    "publishedAt": string,
+    "launches": Array<Object>,
+    "events": Array<Object>
+}
+
+const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsSite, summary, publishedAt, launches, events }) => {
+
     return (
         <Card
             className="card"
@@ -18,19 +31,18 @@ const NewsCard = () => {
             }}>
             <CardMedia
                 sx={{ height: 217 }}
-                image={newsImage}
+                image={imageUrl}
                 title="newsImage"
             />
             <CardContent className="cardContent" sx={{ paddingLeft: "20px" }}>
                 <Typography className="cardContent__date" sx={{ fontSize: "14px", opacity: "60%", fontFamily: "Montserrat, sans-serif" }}>
-                    <img src={timetable} alt="" className='cardContent__date-timetable' /> June 29th, 2021
+                    <img src={timetable} alt="" className='cardContent__date-timetable' /> {publishedAt}
                 </Typography>
                 <Typography sx={{ fontSize: "24px", fontFamily: "Montserrat, sans-serif" }}>
-                    Lizard
+                    {title}
                 </Typography>
                 <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    {summary.length > 130 ? summary.substring(0, 130) : summary}...
                 </Typography>
                 <Link href="/" className='link' sx={{
                     textDecoration: "none", color: "black", fontSize: "14px", fontWeight: "700",

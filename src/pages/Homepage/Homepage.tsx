@@ -1,12 +1,16 @@
 import React from 'react'
 
 import { Typography } from "@mui/material";
+import { useAppSelector } from '../../app/hooks';
 
-import NewsCard from '../../components/NewsCard/NewsCard';
+import NewsList from '../../components/NewsList/NewsList';
 
 import './Homepage.scss';
 
 const Homepage = () => {
+
+    const articles = useAppSelector(state => state.articles.list);
+
     return (
         <div className='containerHomepage'>
             <div className="header">
@@ -19,10 +23,10 @@ const Homepage = () => {
                 </div>
             </div>
             <div className='results'>
-                <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {5}</Typography>
+                <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {articles.length}</Typography>
                 <hr />
             </div>
-            <NewsCard />
+            <NewsList />
         </div>
     )
 }

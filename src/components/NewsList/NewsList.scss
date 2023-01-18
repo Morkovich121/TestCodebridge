@@ -1,0 +1,7 @@
+@use '../../scss' as *;
+
+.newsList {
+    @include flex(inherit, flex-start);
+    flex-wrap: wrap;
+    gap:45px;
+}

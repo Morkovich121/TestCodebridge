@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from './app/hooks';
+import { useAppDispatch } from './app/hooks';
 
 import { fetchArticles } from './app/articleSlice';
 
@@ -17,15 +17,11 @@ const App = () => {
     dispatch(fetchArticles());
   }, [dispatch])
 
-  const articles = useAppSelector(state => state.articles.list);
-
-  console.log(JSON.stringify(articles));
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/article' element={<ArticlePage />} />
+        <Route path='/article/:id' element={<ArticlePage />} />
       </Routes>
     </BrowserRouter>
   );
