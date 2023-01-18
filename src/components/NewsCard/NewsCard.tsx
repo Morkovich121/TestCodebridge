@@ -22,7 +22,7 @@ type Article = {
 
 const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsSite, summary, publishedAt, launches, events }) => {
 
-    const link = "articles/" + id;
+    const link = "article/" + id;
 
     return (
         <Card
