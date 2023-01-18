@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -8,6 +11,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.Fragment>
-    <App />
-  </React.Fragment>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.Fragment >
 );
