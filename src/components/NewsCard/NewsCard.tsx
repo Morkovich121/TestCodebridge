@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, CardMedia, CardContent, Typography, CardActions, Link } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Link } from "@mui/material";
 
 import timetable from '../../images/timetable.png';
 import newsImage from '../../images/newsImage.png';
@@ -32,16 +32,14 @@ const NewsCard = () => {
                     Lizards are a widespread group of squamate reptiles, with over 6,000
                     species, ranging across all continents except Antarctica
                 </Typography>
-            </CardContent>
-            <CardActions>
                 <Link href="/" className='link' sx={{
                     textDecoration: "none", color: "black", fontSize: "14px", fontWeight: "700",
                     fontFamily: "Montserrat, sans-serif",
-                    marginLeft: "12px"
                 }}>
                     Read more <img src={rightArrow} alt="" className='linkArrow' />
                 </Link>
-            </CardActions>
+            </CardContent>
+
         </Card>
     )
 }

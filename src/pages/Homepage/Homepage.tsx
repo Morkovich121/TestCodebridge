@@ -8,7 +8,7 @@ import './Homepage.scss';
 
 const Homepage = () => {
     return (
-        <div className='container'>
+        <div className='containerHomepage'>
             <div className="header">
                 <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Filter by keywords</Typography>
                 <div className='header__input'>

@@ -1,6 +1,6 @@
 @use '../../scss/' as *;
 
-.container {
+.containerHomepage {
     @include flex(flex-start, center);
     flex-direction: column;
     gap: 40px;
