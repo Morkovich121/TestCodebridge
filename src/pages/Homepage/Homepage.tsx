@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 
 import { Typography } from "@mui/material";
 import { useAppSelector } from '../../app/hooks';
+import useDebounce from '../../services/hooks';
 
 import NewsList from '../../components/NewsList/NewsList';
 
@@ -25,6 +26,7 @@ const Homepage = () => {
     const articles = useAppSelector(state => state.articles.list);
 
     const [search, setSearch] = useState<string>('');
+    const debouncedSearch = useDebounce<string>(search, 500)
 
     let result: Article[];
     result = [];
@@ -48,10 +50,10 @@ const Homepage = () => {
                 </div>
             </div>
             <div className='results'>
-                <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {search ? result.length : articles.length}</Typography>
+                <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {debouncedSearch ? result.length : articles.length}</Typography>
                 <hr />
             </div>
-            <NewsList query={search} />
+            <NewsList query={debouncedSearch} />
         </div>
     )
 }
