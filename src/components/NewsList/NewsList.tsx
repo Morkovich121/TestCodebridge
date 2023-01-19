@@ -6,10 +6,14 @@ import NewsCard from '../NewsCard/NewsCard';
 
 import './NewsList.scss';
 
-const NewsList = () => {
+interface PropTypes {
+    query: string,
+}
+
+const NewsList: React.FC<PropTypes> = ({ query }) => {
 
     const articles = useAppSelector(state => state.articles.list);
-
+    
     return (
         <>
             <div className="newsList">
