@@ -53,10 +53,10 @@ const NewsCard: React.FC<Article> = ({ id, title, imageUrl, summary, publishedAt
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
                         {title.replace('.', '').replace(',', '').split(' ').map((elem, index) => (
                             queryWords.includes(elem) ?
-                                <Typography sx={{ fontSize: "24px", backgroundColor: "yellow", fontFamily: "Montserrat, sans-serif" }}>
+                                <Typography key={index} sx={{ fontSize: "24px", backgroundColor: "yellow", fontFamily: "Montserrat, sans-serif" }}>
                                     {titleWords[index]}
                                 </Typography> :
-                                <Typography sx={{ fontSize: "24px", fontFamily: "Montserrat, sans-serif" }}>
+                                <Typography key={index} sx={{ fontSize: "24px", fontFamily: "Montserrat, sans-serif" }}>
                                     {titleWords[index]}
                                 </Typography>
                         ))}
@@ -64,10 +64,10 @@ const NewsCard: React.FC<Article> = ({ id, title, imageUrl, summary, publishedAt
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
                         {newSummary.replace('.', '').replace(',', '').split(' ').map((elem, index) => (
                             queryWords.includes(elem) ?
-                                <Typography sx={{ fontSize: "16px", backgroundColor: "yellow", fontFamily: "Montserrat, sans-serif" }}>
+                                <Typography key={index} sx={{ fontSize: "16px", backgroundColor: "yellow", fontFamily: "Montserrat, sans-serif" }}>
                                     {summaryWords[index]}
                                 </Typography> :
-                                <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
+                                <Typography key={index} sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
                                     {summaryWords[index]}
                                 </Typography>
                         ))}
