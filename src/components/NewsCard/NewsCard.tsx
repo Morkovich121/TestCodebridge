@@ -17,12 +17,18 @@ type Article = {
     "summary": string,
     "publishedAt": string,
     "launches": Array<Object>,
-    "events": Array<Object>
+    "events": Array<Object>,
+    "query": string,
 }
 
-const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsSite, summary, publishedAt, launches, events }) => {
+const NewsCard: React.FC<Article> = ({ id, title, imageUrl, summary, publishedAt, query }) => {
 
     const link = "article/" + id;
+
+    const queryWords = query.replace('.', '').replace(',', '').split(' ');
+    const titleWords = title.split(' ');
+    const newSummary = summary.length > 130 ? summary.substring(0, 130) : summary;
+    const summaryWords = newSummary.split(' ');
 
     return (
         <Link href={link} sx={{
@@ -44,12 +50,31 @@ const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsS
                     <Typography className="cardContent__date" sx={{ fontSize: "14px", opacity: "60%", fontFamily: "Montserrat, sans-serif" }}>
                         <img src={timetable} alt="" className='cardContent__date-timetable' /> {publishedAt.substring(0, 10)}
                     </Typography>
-                    <Typography sx={{ fontSize: "24px", fontFamily: "Montserrat, sans-serif" }}>
-                        {title}
-                    </Typography>
-                    <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
-                        {summary.length > 130 ? summary.substring(0, 130) : summary}...
-                    </Typography>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
+                        {title.replace('.', '').replace(',', '').split(' ').map((elem, index) => (
+                            queryWords.includes(elem) ?
+                                <Typography sx={{ fontSize: "24px", backgroundColor: "yellow", fontFamily: "Montserrat, sans-serif" }}>
+                                    {titleWords[index]}
+                                </Typography> :
+                                <Typography sx={{ fontSize: "24px", fontFamily: "Montserrat, sans-serif" }}>
+                                    {titleWords[index]}
+                                </Typography>
+                        ))}
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
+                        {newSummary.replace('.', '').replace(',', '').split(' ').map((elem, index) => (
+                            queryWords.includes(elem) ?
+                                <Typography sx={{ fontSize: "16px", backgroundColor: "yellow", fontFamily: "Montserrat, sans-serif" }}>
+                                    {summaryWords[index]}
+                                </Typography> :
+                                <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
+                                    {summaryWords[index]}
+                                </Typography>
+                        ))}
+                        <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
+                            ...
+                        </Typography>
+                    </div>
                     <Typography className='link' sx={{
                         textDecoration: "none", color: "black", fontSize: "14px", fontWeight: "700",
                         fontFamily: "Montserrat, sans-serif",

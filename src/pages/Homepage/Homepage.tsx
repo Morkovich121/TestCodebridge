@@ -28,10 +28,30 @@ const Homepage = () => {
     const [search, setSearch] = useState<string>('');
     const debouncedSearch = useDebounce<string>(search, 500)
 
-    let result: Article[];
-    result = [];
+    let result: Article[] = [];
+    let titleWords: Array<string> = [];
+    let summaryWords: Array<string> = [];
+    let resultPriority: number[] = [];
     if (search !== '') {
-        result = articles.filter(elem => elem.title.includes(search));
+        articles.forEach((elem, index) => {
+            resultPriority.push(0);
+            titleWords = elem.title.replace('.', '').replace(',', '').split(' ');
+            summaryWords = elem.summary.replace('.', '').replace(',', '').split(' ');
+            titleWords = elem.title.replace('.', '').replace(',', '').split(' ');
+            summaryWords = elem.summary.replace('.', '').replace(',', '').split(' ');
+            search.split(' ').forEach(queryWord => {
+                titleWords.forEach(titleWord => {
+                    if (queryWord === titleWord) resultPriority[index] += 1.01;
+                })
+            });
+            search.split(' ').forEach(queryWord => {
+                summaryWords.forEach(summaryWords => {
+                    if (queryWord === summaryWords) resultPriority[index] += 1;
+                })
+            })
+
+            if (resultPriority[index] > 0) result.push(elem);
+        })
     }
 
     const onSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
