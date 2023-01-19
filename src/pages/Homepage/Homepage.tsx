@@ -7,10 +7,30 @@ import NewsList from '../../components/NewsList/NewsList';
 
 import './Homepage.scss';
 
+type Article = {
+    "id": number,
+    "featured": boolean,
+    "title": string,
+    "url": string,
+    "imageUrl": string,
+    "newsSite": string,
+    "summary": string,
+    "publishedAt": string,
+    "launches": Array<Object>,
+    "events": Array<Object>
+}
+
 const Homepage = () => {
 
     const articles = useAppSelector(state => state.articles.list);
+
     const [search, setSearch] = useState<string>('');
+
+    let result: Article[];
+    result = [];
+    if (search !== '') {
+        result = articles.filter(elem => elem.title.includes(search));
+    }
 
     const onSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -28,7 +48,7 @@ const Homepage = () => {
                 </div>
             </div>
             <div className='results'>
-                <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {articles.length}</Typography>
+                <Typography sx={{ fontSize: "16px", fontWeight: "600", fontFamily: "Montserrat, sans-serif" }}>Results: {search ? result.length : articles.length}</Typography>
                 <hr />
             </div>
             <NewsList query={search} />
