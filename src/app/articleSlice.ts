@@ -23,7 +23,7 @@ export const fetchArticles = createAsyncThunk<Article[], undefined, { rejectValu
     'articles/fetchArticles',
     async function () {
 
-        const response = await fetch("https://api.spaceflightnewsapi.net/v3/articles");
+        const response = await fetch("https://api.spaceflightnewsapi.net/v3/articles?_limit=100");
 
         if (!response.ok) {
             throw new Error('Server Error!');
