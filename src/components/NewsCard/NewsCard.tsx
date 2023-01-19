@@ -50,12 +50,12 @@ const NewsCard: React.FC<Article> = ({ id, featured, title, url, imageUrl, newsS
                     <Typography sx={{ fontSize: "16px", fontFamily: "Montserrat, sans-serif" }}>
                         {summary.length > 130 ? summary.substring(0, 130) : summary}...
                     </Typography>
-                    <Link href={link} className='link' sx={{
+                    <Typography className='link' sx={{
                         textDecoration: "none", color: "black", fontSize: "14px", fontWeight: "700",
                         fontFamily: "Montserrat, sans-serif",
                     }}>
                         Read more <img src={rightArrow} alt="" className='linkArrow' />
-                    </Link>
+                    </Typography>
                 </CardContent>
 
             </Card>
